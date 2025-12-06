@@ -1,0 +1,60 @@
+/* choice.js styling */
+/* adapted from https://gist.github.com/coorasse/51efbdab14afe721e0832b95231f185c */
+@import url("bootstrap5-choice.css") ;
+
+
+input[required]:not([readonly]) {
+    background-position: right 8px center;
+    background-repeat: no-repeat;
+    padding-right: 30px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Ctext x='0' y='16' font-size='16' fill='red'%3E*%3C/text%3E%3C/svg%3E");
+}
+
+
+/* readonly as text */
+textarea[readonly]:focus,
+input[readonly]:focus {
+    box-shadow: none;
+    border: 0;
+}
+
+textarea[readonly]::placeholder,
+input[readonly]::placeholder {
+    opacity: 0;
+}
+
+textarea[readonly],
+select:disabled,
+select.form-select:disabled,
+input[readonly] {
+    display: block;
+    width: 100%;
+    padding: .375rem 0;
+    margin-bottom: 0;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    background-color: transparent;
+    border: solid transparent;
+    border-width: var(--bs-border-width) 0;
+    background-image: none;
+}
+
+
+
+
+/* ag grid styling */
+
+/* remove border of field when editing */
+.ag-cell-value.ag-cell-inline-editing .form-control {
+    border: 0 ;
+    height: 100%;
+}
+.ag-popup-editor.ag-popup-child .choices__inner {
+    border: 0 ;
+}
+
+/* remove shadow of popup editing (dropdown)*/
+.ag-popup-editor.ag-popup-child {
+    box-shadow: none;
+}
+

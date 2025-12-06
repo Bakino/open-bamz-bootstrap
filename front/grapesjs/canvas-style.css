@@ -1,0 +1,95 @@
+/* add more place to be able to drop element in empty containers 
+and different color to be easier to see
+*/
+.gjs-dashed .container, .gjs-dashed [class^="container-"] ,
+.gjs-dashed .row, .gjs-dashed .d-flex, .gjs-dashed .d-flex>div,
+.gjs-dashed .col, .gjs-dashed [class^="col-"],
+.gjs-dashed td, .gjs-dashed th, .gjs-dashed tr, .gjs-dashed table, 
+.gjs-dashed form {
+    min-height: 2rem !important;
+    min-width: 2rem !important;
+}
+
+.gjs-dashed table, .gjs-dashed form,  .gjs-dashed .container, .gjs-dashed [class^="container-"] {
+    border: 1px solid #bdbdbd;
+    padding: 15px
+}
+
+.gjs-dashed .row, .gjs-dashed tr {
+    border: 1px solid #ffddba;
+    padding: 5px;
+}
+
+.gjs-dashed .d-flex {
+    border: 1px solid #ffbaf0;
+    padding: 5px;
+}
+.gjs-dashed td, .gjs-dashed th, .gjs-dashed .col, .gjs-dashed [class^="col-"], .gjs-dashed .d-flex>div {
+    border: 1px solid #4d62ca;
+    padding: 5px 5px;
+}
+
+.gjs-dashed .w-100 {
+    min-height: .25rem !important;
+}
+
+.gjs-dashed img {
+    min-width: 25px;
+    min-height: 25px;
+    background-color: rgba(0,0,0,0.5);
+}
+
+/* Components */
+.gjs-dashed .btn-group,
+.gjs-dashed .btn-toolbar {
+    padding-right: 1.5rem !important;
+    min-height: 1.5rem !important;
+}
+
+.gjs-dashed .card,
+.gjs-dashed .card-group, .gjs-dashed .card-deck, .gjs-dashed .card-columns {
+    min-height: 1.5rem !important;
+}
+
+.gjs-dashed .dropdown {
+    display: block !important;
+    min-height: 1.5rem !important;
+}
+
+.gjs-dashed .dropdown-menu {
+    min-height: 1.5rem !important;
+    display: block !important;
+}
+
+
+.gjs-dashed .dropdown-menu {
+    min-height: 1.5rem !important;
+    display: block !important;
+    position: relative;
+}
+
+.gjs-dashed .carousel-item {
+    display: block !important;
+    float: none;
+    border: 1px solid #4d62ca;
+}
+
+.gjs-dashed .collapse {
+    display: block !important;
+    border: 1px solid #4d62ca;
+}
+
+.gjs-dashed .tab-pane {
+    display: block !important;
+    border: 1px solid #4d62ca;
+    opacity: 1 !important;
+}
+
+.gjs-dashed .form-floating>label {
+    pointer-events:all;
+}
+
+/* .gjs-dashed .d-none {
+    display: initial !important;
+    opacity: 0.2;
+} */
