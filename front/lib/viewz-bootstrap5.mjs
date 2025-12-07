@@ -76,28 +76,27 @@ bootstrap5.dialogs.routeModal = function ({title, route, openParams, headerClass
             let resultData = null;
 
             // @ts-ignore
-            const router = window.routerz ;
+            const router = ViewZ.routerz;
 
-            let path = route;
-            if(router.base){
-                path = router.base +path;
+            const path = route ;
+            const routeFound = router.getRoute(path) ;
+            if(!routeFound){
+                console.warn("[route-modal] no route found for "+path) ;
             }
 
-            const routeDef = router.allRoutes.find(r=>r.regexp.regexp.exec(path)) ;
-            if(!routeDef){
-                return reject(`View not found for route ${route}`) ;
-            }
-            
-            let data ;
-            if(openParams){
-                data = {params: JSON.parse(JSON.stringify(openParams))} ;
-            }else{
-                data = router._parseLocation({ pathname: path, search: "", hash: "" }, router.getRoute(path));
+            let data;
+            if (openParams) {
+                //param given through property or attribute
+                data = { params: openParams };
+            } else {
+                //get params in the path
+                data = router._parseLocation({ pathname: path, search: "", hash: "" }, routeFound);
             }
 
-            const view = await routeDef.createView() ;
-            view.render({container: elModalBody, route: data});
-        
+            let view = routeFound.view.clone() ;
+            view.route = {url: path, params: data.params} ;
+            await view.render({container: elModalBody}) ;
+
             view.closePopup = (data)=>{
                 resultData = data;
                 bsModal.hide();
