@@ -76,7 +76,7 @@ bootstrap5.dialogs.routeModal = function ({title, route, openParams, headerClass
             let resultData = null;
 
             // @ts-ignore
-            const router = ViewZ.routerz;
+            const router = extensionBootstrap.ViewZ.routerz;
 
             const path = route ;
             const routeFound = router.getRoute(path) ;
@@ -153,7 +153,7 @@ function containerFactory({router, layoutCode, layoutParams}){
     }
 }
 
-export default {
+const extensionBootstrap = {
     set config(config){
         extensionConfig = config ;
     },
@@ -264,3 +264,5 @@ export default {
 
     }
 }
+
+export default extensionBootstrap;
