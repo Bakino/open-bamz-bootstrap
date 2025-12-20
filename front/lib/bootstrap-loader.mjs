@@ -2,7 +2,7 @@
 const link = document.createElement("link");
 link.rel = "stylesheet";
 link.type = "text/css";
-link.href = `/bootstrap5/theme-bootstrap5.css`;
+link.href = `/open-bamz-bootstrap/theme-bootstrap5.css`;
 document.head.appendChild(link);
 
 import bootstrap5 from "./bootstrap-lib.mjs" ;

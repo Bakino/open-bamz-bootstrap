@@ -445,3 +445,6 @@ interface ViewZ {
     validateForm(form?: HTMLFormElement): boolean;
 }
 
+
+declare const bootstrap: Bootstrap5;
+declare const dialogs: Bootstrap5DialogsViewZ;

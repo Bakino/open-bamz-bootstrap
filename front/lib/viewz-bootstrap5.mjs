@@ -13,9 +13,9 @@ bootstrap5.dialogs.viewModal = function ({title, view, openParams, headerClass, 
     let canClose = closeable !== false;
 
     let options = {} ;
-    if(backdrop !== undefined){ options.backdrop = backdrop; }
-    if(focus !== undefined){ options.focus = focus; }
-    if(keyboard !== undefined){ options.keyboard = keyboard; }
+    if(backdrop != null){ options.backdrop = backdrop; }
+    if(focus != null){ options.focus = focus; }
+    if(keyboard != null){ options.keyboard = keyboard; }
     if(!canClose){
         //not closeable, for keyboard to false
         options.keyboard = false;
@@ -59,9 +59,9 @@ bootstrap5.dialogs.routeModal = function ({title, route, openParams, headerClass
     let canClose = closeable !== false;
 
     let options = {} ;
-    if(backdrop !== undefined){ options.backdrop = backdrop; }
-    if(focus !== undefined){ options.focus = focus; }
-    if(keyboard !== undefined){ options.keyboard = keyboard; }
+    if(backdrop != null){ options.backdrop = backdrop; }
+    if(focus != null){ options.focus = focus; }
+    if(keyboard != null){ options.keyboard = keyboard; }
     if(!canClose){
         //not closeable, for keyboard to false
         options.keyboard = false;

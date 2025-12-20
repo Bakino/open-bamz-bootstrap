@@ -224,9 +224,9 @@ bootstrap5.dialogs.modal = function ({title, bodyContents, footerContents=null, 
     let canClose = closeable !== false;
 
     let options = {} ;
-    if(backdrop !== undefined){ options.backdrop = backdrop; }
-    if(focus !== undefined){ options.focus = focus; }
-    if(keyboard !== undefined){ options.keyboard = keyboard; }
+    if(backdrop != null){ options.backdrop = backdrop; }
+    if(focus != null){ options.focus = focus; }
+    if(keyboard != null){ options.keyboard = keyboard; }
     if(!canClose){
         //not closeable, for keyboard to false
         options.keyboard = false;
@@ -306,9 +306,9 @@ bootstrap5.dialogs.question = function ({message, title, headerClass, choices, b
     let canClose = closeable !== false;
 
     let options = {} ;
-    if(backdrop !== undefined){ options.backdrop = backdrop; }
-    if(focus !== undefined){ options.focus = focus; }
-    if(keyboard !== undefined){ options.keyboard = keyboard; }
+    if(backdrop != null){ options.backdrop = backdrop; }
+    if(focus != null){ options.focus = focus; }
+    if(keyboard != null){ options.keyboard = keyboard; }
     if(!canClose){
         //not closeable, for keyboard to false
         options.keyboard = false;

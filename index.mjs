@@ -68,88 +68,86 @@ export const initPlugin = async ({ loadPluginData, runQuery, hasCurrentPlugin, l
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
 
-    router.get("theme-bootstrap5.css", (req, res, next)=>{
-        (async ()=>{
-            try{
-                let appName = req.appName;                   
-                if(await hasCurrentPlugin(appName)){
+    router.get("/theme-bootstrap5.css", async (req, res, next)=>{
+        try{
+            let appName = req.appName;                   
+            if(await hasCurrentPlugin(appName)){
 
-                    const { rows } = await runQuery({database: appName}, 
-                        `SELECT * FROM bootstrap5.sass_cache`
-                    );
+                const { rows } = await runQuery({database: appName}, 
+                    `SELECT * FROM bootstrap5.sass_cache`
+                );
 
-                    let css;
-                    if(rows.length === 0){
-                        //no variable, serve standard bootstrap file
-                        css = await readFile(path.join(__dirname, "node_modules", "bootstrap", "dist", "css", "bootstrap.min.css"), {encoding: "utf8"})
-                    }else{
-                        css = rows[0].css ;
-                        if(rows[0].need_compile){
-                            //we must recompile the CSS (variables changed)
-
-                            const variables = await runQuery({database: appName}, 
-                                `SELECT * FROM bootstrap5.variable`
-                            );
-                            const scss = `
-                            ${variables.rows.map(v=>`${v.variable}: ${v.value};`).join("\n")}
-                            
-                            @import "scss/bootstrap";
-                            
-                            `;
-                            const result = await sass.compileStringAsync(scss, {
-                                loadPaths: [
-                                    path.join(__dirname, "node_modules", "bootstrap"),
-                                ],
-                                quietDeps: true
-                            });
-                            css = result.css ;
-
-                            await runQuery({database: appName}, 
-                                `UPDATE bootstrap5.sass_cache SET need_compile = false, css = $1`,
-                                [css]
-                            );
-                        }
-                    }
-
-                    res.setHeader("Content-Type", "text/css") ;
-                    res.end(css) ;
+                let css;
+                if(rows.length === 0){
+                    //no variable, serve standard bootstrap file
+                    css = await readFile(path.join(__dirname, "node_modules", "bootstrap", "dist", "css", "bootstrap.min.css"), {encoding: "utf8"})
                 }else{
-                    next() ;
+                    css = rows[0].css ;
+                    if(rows[0].need_compile){
+                        //we must recompile the CSS (variables changed)
+
+                        const variables = await runQuery({database: appName}, 
+                            `SELECT * FROM bootstrap5.variable`
+                        );
+                        const scss = `
+                        ${variables.rows.map(v=>`${v.variable}: ${v.value};`).join("\n")}
+                        
+                        @import "scss/bootstrap";
+                        
+                        `;
+                        const result = await sass.compileStringAsync(scss, {
+                            loadPaths: [
+                                path.join(__dirname, "node_modules", "bootstrap"),
+                            ],
+                            quietDeps: true
+                        });
+                        css = result.css ;
+
+                        await runQuery({database: appName}, 
+                            `UPDATE bootstrap5.sass_cache SET need_compile = false, css = $1`,
+                            [css]
+                        );
+                    }
                 }
-            }catch(err){
-                logger.error("Can't load bootstrap variables %o", err)
-                res.status(err.statusCode??500).end("/*Error loading bootstrap5 variables*/");
+
+                res.setHeader("Content-Type", "text/css") ;
+                res.end(css) ;
+            }else{
+                next() ;
             }
-        })();
+        }catch(err){
+            logger.error("Can't load bootstrap variables %o", err)
+            res.status(err.statusCode??500).end("/*Error loading bootstrap5 variables*/");
+        }
     })
 
 
     loadPluginData(async ({pluginsData})=>{
         if(pluginsData?.["grapesjs-editor"]?.pluginSlots?.grapesJsEditor){
             pluginsData?.["grapesjs-editor"]?.pluginSlots?.grapesJsEditor.push( {
-                plugin: "bootstrap5",
-                extensionPath: "/plugin/bootstrap5/grapesjs/grapesjs-bootstrap5-extension.mjs"
+                plugin: "open-bamz-bootstrap",
+                extensionPath: "/plugin/open-bamz-bootstrap/grapesjs/grapesjs-bootstrap5-extension.mjs"
             })
         }
         if(pluginsData?.pwa?.pluginSlots?.urlsToCache){
             //always store dev that is the default lang
             pluginsData?.pwa?.pluginSlots?.urlsToCache.push({
-                url: `/bootstrap5/theme-bootstrap5.css`
+                url: `/open-bamz-bootstrap/theme-bootstrap5.css`
             });
         }
 
         if(pluginsData?.["sources-export"]?.pluginSlots?.urlsToDownload){
             //always store dev that is the default lang
             pluginsData?.["sources-export"]?.pluginSlots?.urlsToDownload.push({
-                url: `/bootstrap5/theme-bootstrap5.css`,
-                dest: `bootstrap5/theme-bootstrap5.css`
+                url: `/open-bamz-bootstrap/theme-bootstrap5.css`,
+                dest: `open-bamz-bootstrap/theme-bootstrap5.css`
             });
         }
 
-        if(pluginsData?.["viewz"]?.pluginSlots?.viewzExtensions){
-            pluginsData?.["viewz"]?.pluginSlots?.viewzExtensions.push( {
-                plugin: "bootstrap5",
-                extensionPath: "/plugin/:appName/bootstrap5/lib/viewz-bootstrap5.mjs",
+        if(pluginsData?.["open-bamz-viewz"]?.pluginSlots?.viewzExtensions){
+            pluginsData?.["open-bamz-viewz"]?.pluginSlots?.viewzExtensions.push( {
+                plugin: "open-bamz-bootstrap",
+                extensionPath: "/plugin/open-bamz-bootstrap/lib/viewz-bootstrap5.mjs",
                 "d.ts": `
                 declare const bootstrap: Bootstrap5;
                 declare const bootstrap5: Bootstrap5;
@@ -161,20 +159,20 @@ export const initPlugin = async ({ loadPluginData, runQuery, hasCurrentPlugin, l
         }
         if(pluginsData?.["dbadmin"]?.pluginSlots?.dbFieldsExtensions){
             pluginsData?.["dbadmin"]?.pluginSlots?.dbFieldsExtensions.push( {
-                plugin: "bootstrap5",
-                extensionPath: "/plugin/:appName/bootstrap5/lib/db-components-bootstrap5.mjs",
+                plugin: "open-bamz-bootstrap",
+                extensionPath: "/plugin/open-bamz-bootstrap/lib/db-components-bootstrap5.mjs",
             })
         }
         if(pluginsData?.["dbadmin"]?.pluginSlots?.dbValuesExtensions){
             pluginsData?.["dbadmin"]?.pluginSlots?.dbValuesExtensions.push( {
-                plugin: "bootstrap5",
-                extensionPath: "/plugin/:appName/bootstrap5/lib/db-values-bootstrap5.mjs",
+                plugin: "open-bamz-bootstrap",
+                extensionPath: "/plugin/open-bamz-bootstrap/lib/db-values-bootstrap5.mjs",
             })
         }
         if(pluginsData?.["code-editor"]?.pluginSlots?.javascriptApiDef){
             pluginsData?.["code-editor"]?.pluginSlots?.javascriptApiDef.push( {
-                plugin: "bootstrap5",
-                url: "/plugin/:appName/bootstrap5/lib/bootstrap-lib.d.ts"
+                plugin: "open-bamz-bootstrap",
+                url: "/plugin/open-bamz-bootstrap/lib/bootstrap-lib.d.ts"
             })
         }
     })
@@ -183,7 +181,7 @@ export const initPlugin = async ({ loadPluginData, runQuery, hasCurrentPlugin, l
         // path in which the plugin provide its front end files
         frontEndPath: "front",
         //lib that will be automatically load in frontend
-        frontEndLib: "lib/bootstrap-lib.mjs",
+        frontEndLib: "lib/bootstrap-loader.mjs",
         router: router,
         //menu entries
         // menu: [
