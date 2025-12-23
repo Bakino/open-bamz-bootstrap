@@ -32,7 +32,9 @@ bootstrap5.dialogs.viewModal = function ({title, view, openParams, headerClass, 
             bsModal.hide();
         }
 
-        view.render({container: elModalBody, route: openParams});
+        view.route = {params: openParams} ;
+
+        view.render({container: elModalBody});
 
 
         bsModal.show() ;
