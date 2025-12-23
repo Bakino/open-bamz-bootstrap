@@ -1,6 +1,6 @@
 export default {
 
-    customCss: "/plugin/:appName/bootstrap5/style/bootstrap5-form.css",
+    customCss: "/plugin/open-bamz-bootstrap/style/bootstrap5-form.css",
 
     /**
      * apply the bootstrap form styling

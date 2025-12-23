@@ -180,6 +180,7 @@ export const initPlugin = async ({ loadPluginData, runQuery, hasCurrentPlugin, l
     return {
         // path in which the plugin provide its front end files
         frontEndPath: "front",
+        frontEndPublic: ["lib", "style"],
         //lib that will be automatically load in frontend
         frontEndLib: "lib/bootstrap-loader.mjs",
         router: router,
