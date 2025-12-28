@@ -1,5 +1,5 @@
 export default {
-
+    defaultExtension: null,
     customCss: "/plugin/open-bamz-bootstrap/style/bootstrap5-form.css",
 
     /**

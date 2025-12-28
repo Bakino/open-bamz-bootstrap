@@ -2,9 +2,8 @@ let decimalFormat = new Intl.NumberFormat(undefined,{ maximumFractionDigits: 30 
 let decimalDisplayFormat = new Intl.NumberFormat(undefined,{ minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 export default {
-
-
-    setValue: async function({type, elValue, value, formattedValue, defaultExtension}){
+    defaultExtension: null,
+    setValue: async function({type, elValue, value, formattedValue}){
         if(type === "uuid"){
             elValue.innerHTML = value ? `<span class="badge text-bg-light border text-secondary border-secondary" title="${value}">${value.split("-")[0]}</span>`:""
         }else if(type?.startsWith("timestamp") || type === "datetime"){
@@ -46,10 +45,10 @@ export default {
 </svg>` ;
             }
         }else if(type === "bytea"){
-            await defaultExtension.setValue({type, elValue, value, formattedValue, defaultExtension})
+            await this.defaultExtension.setValue({type, elValue, value, formattedValue})
             elValue.querySelector("button").className = "btn btn-sm btn-outline-secondary" ;
         }else{
-            await defaultExtension.setValue({type, elValue, value, formattedValue, defaultExtension})
+            await this.defaultExtension.setValue({type, elValue, value, formattedValue})
         }
     },
 
