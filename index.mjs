@@ -136,9 +136,9 @@ export const initPlugin = async ({ loadPluginData, runQuery, hasCurrentPlugin, l
             });
         }
 
-        if(pluginsData?.["sources-export"]?.pluginSlots?.urlsToDownload){
+        if(pluginsData?.["open-bamz-packaging"]?.pluginSlots?.urlsToDownload){
             //always store dev that is the default lang
-            pluginsData?.["sources-export"]?.pluginSlots?.urlsToDownload.push({
+            pluginsData?.["open-bamz-packaging"]?.pluginSlots?.urlsToDownload.push({
                 url: `/open-bamz-bootstrap/theme-bootstrap5.css`,
                 dest: `open-bamz-bootstrap/theme-bootstrap5.css`
             });
@@ -157,14 +157,14 @@ export const initPlugin = async ({ loadPluginData, runQuery, hasCurrentPlugin, l
                 `
             })
         }
-        if(pluginsData?.["dbadmin"]?.pluginSlots?.dbFieldsExtensions){
-            pluginsData?.["dbadmin"]?.pluginSlots?.dbFieldsExtensions.push( {
+        if(pluginsData?.["open-bamz-database"]?.pluginSlots?.dbFieldsExtensions){
+            pluginsData?.["open-bamz-database"]?.pluginSlots?.dbFieldsExtensions.push( {
                 plugin: "open-bamz-bootstrap",
                 extensionPath: "/plugin/open-bamz-bootstrap/lib/db-components-bootstrap5.mjs",
             })
         }
-        if(pluginsData?.["dbadmin"]?.pluginSlots?.dbValuesExtensions){
-            pluginsData?.["dbadmin"]?.pluginSlots?.dbValuesExtensions.push( {
+        if(pluginsData?.["open-bamz-database"]?.pluginSlots?.dbValuesExtensions){
+            pluginsData?.["open-bamz-database"]?.pluginSlots?.dbValuesExtensions.push( {
                 plugin: "open-bamz-bootstrap",
                 extensionPath: "/plugin/open-bamz-bootstrap/lib/db-values-bootstrap5.mjs",
             })
