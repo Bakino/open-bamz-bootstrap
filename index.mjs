@@ -129,9 +129,9 @@ export const initPlugin = async ({ loadPluginData, runQuery, hasCurrentPlugin, l
                 extensionPath: "/plugin/open-bamz-bootstrap/grapesjs/grapesjs-bootstrap5-extension.mjs"
             })
         }
-        if(pluginsData?.pwa?.pluginSlots?.urlsToCache){
+        if(pluginsData?.["open-bamz-pwa"]?.pluginSlots?.urlsToCache){
             //always store dev that is the default lang
-            pluginsData?.pwa?.pluginSlots?.urlsToCache.push({
+            pluginsData?.["open-bamz-pwa"]?.pluginSlots?.urlsToCache.push({
                 url: `/open-bamz-bootstrap/theme-bootstrap5.css`
             });
         }
