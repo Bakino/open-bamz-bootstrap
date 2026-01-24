@@ -1,0 +1,19 @@
+/* border radius follow bootstrap radius */
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
+    border-radius: 0 0 var(--bs-border-radius) var(--bs-border-radius);
+}
+
+.ql-toolbar.ql-snow {
+    border-radius: var(--bs-border-radius) var(--bs-border-radius) 0 0;
+}
+
+/* disabled style */
+.form-bootstrap5 .ql-container.ql-disabled {
+    border: solid transparent;
+    border-width: var(--bs-border-width) 0;
+    padding: .375rem 0;
+}
+
+.form-bootstrap5 .ql-container.ql-disabled .ql-editor {
+    padding: 0;
+}
