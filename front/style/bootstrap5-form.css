@@ -1,6 +1,7 @@
 /* choice.js styling */
 /* adapted from https://gist.github.com/coorasse/51efbdab14afe721e0832b95231f185c */
 @import url("bootstrap5-choice.css") ;
+@import url("bootstrap5-quill.css") ;
 
 
 input[required]:not([readonly]) {
