@@ -31,6 +31,10 @@ export default {
         }else{
             const elDiv = document.createElement("DIV") ;
             elDiv.classList.add("form-bootstrap5")
+	    if(type === "html"){
+		elDiv.classList.add("d-flex");
+		elDiv.classList.add("flex-column");
+	    }
             if(!el.noMargin){
                 elDiv.classList.add("mb-3") ;
             }
