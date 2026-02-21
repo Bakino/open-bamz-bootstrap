@@ -63,10 +63,6 @@ bootstrap5.initForm = function(form){
      */
     form.applyMode = (mode)=>{
         
-        // reinit the validation status
-        form.classList.remove("was-validated") ;
-        form.classList.remove("needs-validation") ;
-
         // get all fields in the form
         const fields = Array.from(form.querySelectorAll("db-field"))
             .concat(Array.from(form.querySelectorAll("input")))
@@ -81,6 +77,9 @@ bootstrap5.initForm = function(form){
             }
         }
 	if(form.mode !== mode){
+		// reinit the validation status
+                form.classList.remove("was-validated") ;
+                form.classList.remove("needs-validation") ;
 		form.mode = mode ;
 	        form.dispatchEvent(new CustomEvent("changeMode", {detail: mode}))
 	}
