@@ -80,8 +80,10 @@ bootstrap5.initForm = function(form){
                 }
             }
         }
-
-        form.dispatchEvent(new CustomEvent("changeMode", {detail: mode}))
+	if(form.mode !== mode){
+		form.mode = mode ;
+	        form.dispatchEvent(new CustomEvent("changeMode", {detail: mode}))
+	}
     }
 
     form.validate = ()=>{
