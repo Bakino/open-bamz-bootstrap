@@ -229,6 +229,23 @@ const extensionBootstrap = {
                 form.applyMode(this.data.mode);
             });
 
+	    // Listen to DOM change in the form
+
+	    const observer = new MutationObserver((mutations) => {
+	       for (const mutation of mutations) {
+		  for (const node of mutation.addedNodes) {
+		      if (node.nodeType !== Node.ELEMENT_NODE) continue;
+			// re-apply mode so newly added field are in coherent status
+			form.applyMode(this.data.mode)
+   		  }
+               }
+           });
+
+           observer.observe(form, {
+              childList: true,  // watch for direct children additions/removals
+              subtree: true,    // include all descendants
+            });
+
             return this.managedForm ;
         },
 
